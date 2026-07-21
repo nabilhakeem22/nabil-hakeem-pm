@@ -92,6 +92,10 @@
   .shots{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
   .shots.portrait{grid-template-columns:repeat(3,1fr)}
   .shots.portrait .shot{aspect-ratio:3/4}
+  .shots.belvro-split{grid-template-columns:repeat(3,1fr)}
+  .shots.belvro-split .web{grid-column:1 / -1;aspect-ratio:16/9}
+  .shots.belvro-split .app{aspect-ratio:3/4}
+  .plat{position:absolute;top:8px;left:8px;z-index:3;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(10,110,82,.92);padding:3px 8px;border-radius:3px}
   .shot{position:relative;border-radius:6px;overflow:hidden;background:#0C1814;border:1px solid var(--panel-line)}
   .shot.main{grid-column:1 / -1;aspect-ratio:16/9}
   .shot.sub{aspect-ratio:4/3}
@@ -284,10 +288,11 @@
 
     <!-- Belvro Wealth -->
     <article class="project reveal">
-      <div class="visual"><div class="shots">
-        <div class="shot main"><img src="assets/belvro-1.png" alt="Belvro Wealth — client portfolio view" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">BELVRO · 01</div><div class="pico"></div><div class="pfile">assets/belvro-1.png</div></div></div>
-        <div class="shot sub"><img src="assets/belvro-2.png" alt="Belvro Wealth — portfolio overview" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">BELVRO · 02</div><div class="pico"></div><div class="pfile">assets/belvro-2.png</div></div></div>
-        <div class="shot sub"><img src="assets/belvro-3.png" alt="Belvro Wealth — home after investment" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">BELVRO · 03</div><div class="pico"></div><div class="pfile">assets/belvro-3.png</div></div></div>
+      <div class="visual"><div class="shots belvro-split">
+        <div class="shot web"><span class="plat">Web</span><img src="assets/belvro-1.png" alt="Belvro Wealth web platform — advisor portfolio dashboard" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">BELVRO · WEB</div><div class="pico"></div><div class="pfile">assets/belvro-1.png</div></div></div>
+        <div class="shot app"><span class="plat">App</span><img src="assets/belvro-app-1.png" alt="Belvro Wealth app — home &amp; investment journey" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">APP · 01</div><div class="pico"></div><div class="pfile">assets/belvro-app-1.png</div></div></div>
+        <div class="shot app"><img src="assets/belvro-app-2.png" alt="Belvro Wealth app — explore portfolios" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">APP · 02</div><div class="pico"></div><div class="pfile">assets/belvro-app-2.png</div></div></div>
+        <div class="shot app"><img src="assets/belvro-app-3.png" alt="Belvro Wealth app — wallet &amp; funding" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">APP · 03</div><div class="pico"></div><div class="pfile">assets/belvro-app-3.png</div></div></div>
       </div></div>
       <div class="content">
         <div class="p-id">REC-02</div>
@@ -295,7 +300,7 @@
         <div class="p-role">Product Manager · Outsourced build for <span dir="rtl">المخبر الاقتصادي</span></div>
         <div class="readout">ADGM Cat 4&nbsp; <span class="val">regulated advisory</span> &nbsp;·&nbsp; Alpaca + Stripe</div>
         <div class="row"><span class="k">Problem</span><span class="v">Turn a tightly-regulated wealth model — an ADGM Category 4 advisory that can recommend trades but never hold client funds — into something an engineering team could actually build.</span></div>
-        <div class="row"><span class="k">My role</span><span class="v">Authored the full product spec suite: the tiered average-daily-AUM fee engine (Stripe-billed), the per-trade approval + audit-trail flow, multi-strategy architecture on the Alpaca Broker API, and bilingual (AR/EN) requirements.</span></div>
+        <div class="row"><span class="k">My role</span><span class="v">Authored the full product spec suite: the tiered average-daily-AUM fee engine (Stripe-billed), the per-trade approval + audit-trail flow, multi-strategy architecture on the Alpaca Broker API, and bilingual (AR/EN) requirements — specified across both the web platform and the client mobile app.</span></div>
         <div class="row"><span class="k">Outcome</span><span class="v">A regulated advisory platform made buildable — compliance, fees, and execution specified precisely enough to hand straight to developers.</span></div>
         <div class="defend"><span class="k">The call I'd defend →</span><span class="v">Kept fee collection entirely outside the brokerage (Stripe-only, never touching client funds) — because that single line is what keeps the Cat 4 license valid.</span></div>
       </div>
