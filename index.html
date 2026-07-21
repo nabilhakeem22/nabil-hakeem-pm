@@ -167,6 +167,25 @@
   .certs .c-n{font-weight:600;font-size:14.5px}
   .certs .c-m{font-family:"Space Mono",monospace;font-size:11.5px;color:var(--muted);margin-top:2px}
 
+  /* mentorship */
+  .mentor{display:grid;grid-template-columns:0.85fr 1.15fr;border:1px solid var(--line);border-radius:6px;background:var(--surface);overflow:hidden}
+  @media(max-width:760px){.mentor{grid-template-columns:1fr}}
+  .m-side{background:var(--panel);color:var(--panel-text);padding:34px 32px;display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+  .m-org{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:2.2rem;color:#fff;line-height:1;letter-spacing:-0.01em}
+  .m-role{font-family:"Space Mono",monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--signal);margin-top:11px}
+  .m-meta{display:flex;flex-direction:column;gap:13px}
+  .m-line{display:flex;flex-direction:column;gap:2px;font-size:14px;color:#fff}
+  .m-line span{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8A968F}
+  .m-body{padding:34px 36px}
+  .m-lede{font-size:1.05rem;color:var(--ink);line-height:1.5;margin-bottom:20px;max-width:54ch}
+  .m-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+  .m-list li{font-size:15px;color:var(--ink-soft);line-height:1.5;padding-left:20px;position:relative}
+  .m-list li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--signal)}
+  .m-note{border-top:1px solid var(--line);padding-top:15px}
+  .m-note .k{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--signal-deep);display:block;margin-bottom:4px}
+  .m-note .v{font-size:15px;color:var(--ink);font-weight:500;line-height:1.5}
+  @media(max-width:560px){.m-side,.m-body{padding:24px 22px}.m-org{font-size:1.9rem}}
+
   .contact{text-align:center;padding-bottom:96px}
   .contact h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(2rem,6vw,3.5rem);letter-spacing:-0.02em;line-height:1.05;margin-bottom:22px}
   .contact .lede{margin:0 auto 34px}
@@ -235,7 +254,7 @@
 
 <div class="topbar"><div class="wrap">
   <a class="brand" href="#top"><b>NH</b> <span class="brand-sub">/ senior product manager</span></a>
-  <nav class="navlinks" aria-label="Primary"><a href="#work">Work</a><a href="#exercises">Exercises</a><a href="#ai">AI-native</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  <nav class="navlinks" aria-label="Primary"><a href="#work">Work</a><a href="#exercises">Exercises</a><a href="#ai">AI-native</a><a href="#mentorship">Mentorship</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
   <a class="nav-cta" href="#contact">Contact</a>
 </div></div>
 
@@ -399,12 +418,39 @@
   </div>
 </div></section>
 
+<section id="mentorship"><div class="wrap">
+  <div class="sec-head reveal"><h2>Product mentorship</h2><div class="meta">// coaching the next wave</div></div>
+  <div class="mentor reveal">
+    <div class="m-side">
+      <div>
+        <div class="m-org">Sprints</div>
+        <div class="m-role">Product Coach · Part-time</div>
+      </div>
+      <div class="m-meta">
+        <div class="m-line"><span>Program</span>PM Bootcamp — UAE</div>
+        <div class="m-line"><span>When</span>Sep 2024 – Aug 2025</div>
+        <div class="m-line"><span>Format</span>Masterclass · cohort-based</div>
+      </div>
+    </div>
+    <div class="m-body">
+      <p class="m-lede">As a Product Coach at Sprints, I guided the next wave of PMs through the Product Management Bootcamp — turning frameworks into judgment for people breaking into the field.</p>
+      <ul class="m-list">
+        <li>Guided masterclass members through the full PM curriculum, chapter by chapter, with tailored support to unblock them.</li>
+        <li>Graded assignments with constructive, objective-aligned feedback that translated into real skill gains.</li>
+        <li>Authored fresh, hands-on tasks for each phase of the bootcamp.</li>
+        <li>Kept active communication with participants to drive on-time completion.</li>
+      </ul>
+      <div class="m-note"><span class="k">The throughline →</span><span class="v">Teaching forces clarity — explaining product decisions to learners keeps my own fundamentals sharp.</span></div>
+    </div>
+  </div>
+</div></section>
+
 <section id="about"><div class="wrap"><div class="about">
   <div class="reveal">
     <span class="eyebrow">Profile</span>
     <h2>Outcome-driven, evidence-led.</h2>
     <p>I'm a <strong>Senior Product Manager</strong> focused on B2B/B2C SaaS, currently owning governance and market-intelligence data hubs at <strong>360 Company</strong>. Across four years and five industries — E-commerce, MarTech, HealthTech, RegTech and FinTech — the constant is turning complex user pain into optimized, scalable roadmaps that ship.</p>
-    <p>I also coach the next wave of product people through a UAE <strong>product-management bootcamp at Sprints</strong>, and create technical content — teaching keeps my own fundamentals sharp.</p>
+    <p>Alongside product work, I <strong>coach and mentor</strong> aspiring PMs (see above) and create technical content for the product community — teaching and writing keep my own fundamentals sharp.</p>
     <p>Based in Cairo, Egypt · native Arabic · fluent English.</p>
     <div class="chips"><span class="chip">Product strategy</span><span class="chip">Data products</span><span class="chip">PRD authoring</span><span class="chip">Marketplaces</span><span class="chip">RegTech / FinTech</span><span class="chip">Agile / Scrum</span><span class="chip">Analytics</span><span class="chip">AI adoption</span></div>
   </div>
