@@ -140,6 +140,47 @@
   .lb-x:hover{background:var(--signal-deep);border-color:var(--signal-deep)}
   .lb-cap{position:absolute;left:0;right:0;bottom:20px;text-align:center;color:#C9D3CD;font-family:"Space Mono",monospace;font-size:12px;padding:0 20px}
 
+  /* ---- case deck viewer ---- */
+  .ex[data-case]{cursor:pointer}
+  .ex[data-case]:hover,.ex[data-case]:focus-visible{border-color:var(--signal);transform:translateY(-2px)}
+  .ex[data-case]:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+  .deck-link{font-family:"Space Mono",monospace;font-size:12px;color:var(--signal-deep);text-decoration:none;display:inline-flex;align-items:center;gap:6px;background:none;border:0;padding:0;cursor:pointer;margin-top:14px}
+  .deck-link:hover,.deck-link:focus-visible{color:var(--ink)}
+  .dv{position:fixed;inset:0;z-index:210;display:none;background:rgba(9,15,13,.95);backdrop-filter:blur(6px);padding:22px 18px}
+  .dv.on{display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .dv-stage{display:flex;align-items:center;justify-content:center;gap:14px;max-width:100%}
+  .dv-img{max-height:80vh;max-width:min(620px,84vw);width:auto;height:auto;display:block;border-radius:10px;
+    border:1px solid var(--panel-line);box-shadow:0 40px 90px -30px #000;background:var(--paper)}
+  .dv-nav{width:50px;height:50px;flex:none;border-radius:50%;border:1px solid rgba(255,255,255,.22);
+    background:rgba(0,0,0,.4);color:#fff;font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s,border-color .18s}
+  .dv-nav:hover:not([disabled]){background:var(--signal-deep);border-color:var(--signal-deep)}
+  .dv-nav[disabled]{opacity:.22;cursor:default}
+  .dv-x{position:absolute;top:18px;right:22px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.22);
+    background:rgba(0,0,0,.35);color:#fff;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .dv-x:hover{background:var(--signal-deep);border-color:var(--signal-deep)}
+  .dv-head{position:absolute;top:24px;left:24px;font-family:"Space Mono",monospace;font-size:12px;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--signal);max-width:60vw}
+  .dv-bar{display:flex;align-items:center;gap:16px;margin-top:20px;flex-wrap:wrap;justify-content:center;
+    font-family:"Space Mono",monospace;font-size:12px;color:var(--panel-text)}
+  .dv-bar a{color:var(--panel-text);text-decoration:none;border:1px solid var(--panel-line);
+    padding:9px 16px;border-radius:100px;transition:background .18s,color .18s,border-color .18s}
+  .dv-bar a:hover,.dv-bar a:focus-visible{background:var(--signal-deep);color:#fff;border-color:var(--signal-deep)}
+  .dv-dots{display:flex;gap:8px}
+  .dv-dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.26);cursor:pointer}
+  .dv-dots button.on{background:var(--signal)}
+  @media(max-width:700px){
+    .dv{padding:16px 12px}
+    .dv-stage{position:relative;gap:0}
+    .dv-img{max-width:calc(100vw - 32px);max-height:72vh}
+    .dv-nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;font-size:17px;
+      background:rgba(9,15,13,.66);border-color:rgba(255,255,255,.3)}
+    .dv-prev{left:8px} .dv-next{right:8px}
+    .dv-nav[disabled]{visibility:hidden}
+    .dv-head{position:static;margin-bottom:16px;text-align:center;max-width:100%;font-size:11px}
+    .dv-bar{gap:12px;font-size:11px;margin-top:16px}
+    .dv-x{top:12px;right:12px;width:40px;height:40px;font-size:20px}
+  }
+
   .p-id{font-family:"Space Mono",monospace;font-size:12px;color:var(--signal-deep);letter-spacing:0.06em}
   .p-co{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.5rem;margin:8px 0 4px;line-height:1.05}
   .p-role{font-family:"Space Mono",monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted)}
@@ -351,12 +392,13 @@
       <div class="content">
         <div class="p-id">REC-02</div>
         <div class="p-co">Belvro Wealth</div>
-        <div class="p-role">Product Manager · Outsourced build for <span dir="rtl">المخبر الاقتصادي</span></div>
-        <div class="readout">ADGM Cat 4&nbsp; <span class="val">regulated advisory</span> &nbsp;·&nbsp; Alpaca + Stripe</div>
+        <div class="p-role">Product Manager · Outsourced product definition</div>
+        <div class="readout">ADGM Cat 4&nbsp; <span class="val">regulated advisory</span> &nbsp;·&nbsp; spec to handoff</div>
         <div class="row"><span class="k">Problem</span><span class="v">Turn a tightly-regulated wealth model — an ADGM Category 4 advisory that can recommend trades but never hold client funds — into something an engineering team could actually build.</span></div>
-        <div class="row"><span class="k">My role</span><span class="v">Authored the full product spec suite: the tiered average-daily-AUM fee engine (Stripe-billed), the per-trade approval + audit-trail flow, multi-strategy architecture on the Alpaca Broker API, and bilingual (AR/EN) requirements — specified across both the web platform and the client mobile app.</span></div>
+        <div class="row"><span class="k">My role</span><span class="v">Authored the full product spec suite: the tiered fee model, the per-trade approval and audit-trail flow, a multi-strategy architecture, and bilingual (AR/EN) requirements — specified across both the web platform and the client mobile app.</span></div>
         <div class="row"><span class="k">Outcome</span><span class="v">A regulated advisory platform made buildable — compliance, fees, and execution specified precisely enough to hand straight to developers.</span></div>
-        <div class="defend"><span class="k">The call I'd defend →</span><span class="v">Kept fee collection entirely outside the brokerage (Stripe-only, never touching client funds) — because that single line is what keeps the Cat 4 license valid.</span></div>
+        <div class="defend"><span class="k">The call I'd defend →</span><span class="v">Specified per-trade approval even though it costs conversion — that friction is the only reason the business can operate under the licence it holds.</span></div>
+        <button class="deck-link" type="button" data-case="belvro" data-slides="5" data-title="Record 02 · Belvro Wealth" data-pdf="assets/cases/Belvro-Wealth-Case-Study.pdf">Read the case study →</button>
       </div>
     </article>
 
@@ -428,11 +470,11 @@
   <div class="sec-head reveal"><h2>Case Studies</h2><div class="meta">// self-directed product analyses</div></div>
   <p class="reveal" style="max-width:60ch;color:var(--ink-soft);margin-top:-24px;margin-bottom:36px">How I think, on demand — structured product analyses across domains: discovery, prioritization (RICE / MoSCoW), user stories, and success metrics.</p>
   <div class="ex-grid">
-    <div class="ex reveal"><div class="tag">InsurTech · Egypt</div><h3>Amenli</h3><p>Market analysis of Egypt's digital-insurance space, plus a phased AI-assisted claims portal and a multi-policy comparison engine.</p><a href="https://drive.google.com/file/d/1Lk7JcmgMgXTQwTW4f24oHsc-edUySWc5/view" target="_blank" rel="noopener">View case →</a></div>
-    <div class="ex reveal"><div class="tag">Logistics · Data</div><h3>Khazenly</h3><p>Diagnosed a delivery-success drop from order data and proposed a Dynamic Delivery Coordination System to recover failed deliveries.</p><a href="https://docs.google.com/document/d/1dveIWZZGGaTG9sHuQ9zHsh-wRokVEvyVh44SQlf1vug/edit" target="_blank" rel="noopener">View case →</a></div>
-    <div class="ex reveal"><div class="tag">Loyalty · Growth</div><h3>Dsquares — Mobilawy</h3><p>A signup-to-activation and organic-acquisition growth plan to close the gap to global benchmarks, with impact-sized initiatives.</p><a href="https://docs.google.com/document/d/1YEUkSEqPKlTbczlQTCklhrVsBa0JHuclkyIWu7gY6YI/edit" target="_blank" rel="noopener">View case →</a></div>
-    <div class="ex reveal"><div class="tag">Marketplace · Spec</div><h3>Antique Marketplace</h3><p>End-to-end product spec for an auction marketplace: personas, user stories with acceptance criteria, wireframes, and login flow.</p><a href="https://docs.google.com/document/d/1rNsqQ3asuyWZVtBBRzs4Ds0oB5xRQZRYdHrPnbIwwbY/edit" target="_blank" rel="noopener">View case →</a></div>
-    <div class="ex reveal"><div class="tag">AI · B2B SaaS</div><h3>Predictive Budget Intelligence</h3><p>Product-thinking case for an AI-powered project budget system — RICE-scored MVP, user stories, and phased rollout.</p><a href="https://docs.google.com/document/d/1anbU1wMXpZP84cUbbG4sSDbY1JL2c0odpx5AyVGUIwM/edit" target="_blank" rel="noopener">View case →</a></div>
+    <div class="ex reveal" data-case="amenli" data-slides="5" data-title="Case 01 · Amenli — InsurTech" data-pdf="assets/cases/Case-01-Amenli.pdf" data-doc="https://drive.google.com/file/d/1Lk7JcmgMgXTQwTW4f24oHsc-edUySWc5/view" tabindex="0" role="button" aria-label="Open the Amenli case study"><div class="tag">InsurTech · Egypt</div><h3>Amenli</h3><p>Market analysis of Egypt's digital-insurance space, and the feature I'd build from it — an advisor that turns a description of a business into a coverage recommendation.</p><span class="deck-link">View case →</span></div>
+    <div class="ex reveal" data-case="khazenly" data-slides="5" data-title="Case 02 · Khazenly — Logistics" data-pdf="assets/cases/Case-02-Khazenly.pdf" data-doc="https://docs.google.com/document/d/1dveIWZZGGaTG9sHuQ9zHsh-wRokVEvyVh44SQlf1vug/edit" tabindex="0" role="button" aria-label="Open the Khazenly case study"><div class="tag">Logistics · Data</div><h3>Khazenly</h3><p>Diagnosed a delivery-success drop from order data and proposed a Dynamic Delivery Coordination System to recover failed deliveries.</p><span class="deck-link">View case →</span></div>
+    <div class="ex reveal" data-case="dsquares" data-slides="5" data-title="Case 03 · Dsquares — Mobilawy" data-pdf="assets/cases/Case-03-Dsquares-Mobilawy.pdf" data-doc="https://docs.google.com/document/d/1YEUkSEqPKlTbczlQTCklhrVsBa0JHuclkyIWu7gY6YI/edit" tabindex="0" role="button" aria-label="Open the Dsquares Mobilawy case study"><div class="tag">Loyalty · Growth</div><h3>Dsquares — Mobilawy</h3><p>A signup-to-activation and organic-acquisition growth plan to close the gap to global benchmarks, with impact-sized initiatives.</p><span class="deck-link">View case →</span></div>
+    <div class="ex reveal" data-case="antique" data-slides="5" data-title="Case 04 · Antique Marketplace" data-pdf="assets/cases/Case-04-Antique-Marketplace.pdf" data-doc="https://docs.google.com/document/d/1rNsqQ3asuyWZVtBBRzs4Ds0oB5xRQZRYdHrPnbIwwbY/edit" tabindex="0" role="button" aria-label="Open the Antique Marketplace case study"><div class="tag">Marketplace · Spec</div><h3>Antique Marketplace</h3><p>End-to-end product spec for an auction marketplace: personas, user stories with acceptance criteria, wireframes, and login flow.</p><span class="deck-link">View case →</span></div>
+    <div class="ex reveal" data-case="budget" data-slides="5" data-title="Case 05 · Predictive Budget Intelligence" data-pdf="assets/cases/Case-05-Predictive-Budget-Intelligence.pdf" data-doc="https://docs.google.com/document/d/1anbU1wMXpZP84cUbbG4sSDbY1JL2c0odpx5AyVGUIwM/edit" tabindex="0" role="button" aria-label="Open the Predictive Budget Intelligence case study"><div class="tag">AI · B2B SaaS</div><h3>Predictive Budget Intelligence</h3><p>Product-thinking case for an AI-powered project budget system — RICE-scored MVP, user stories, and phased rollout.</p><span class="deck-link">View case →</span></div>
   </div>
 </div></section>
 
@@ -541,6 +583,110 @@
     });
     lb.addEventListener('click',e=>{if(e.target===lb||e.target.closest('.lb-x'))close();});
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lb.classList.contains('on'))close();});
+  })();
+
+  /* case-study deck viewer — click a card, read the deck in place */
+  (function(){
+    const triggers=document.querySelectorAll('[data-case]');
+    if(!triggers.length)return;
+
+    const dv=document.createElement('div');
+    dv.className='dv';
+    dv.setAttribute('role','dialog');dv.setAttribute('aria-modal','true');dv.setAttribute('aria-hidden','true');
+    dv.innerHTML=
+      '<button class="dv-x" type="button" aria-label="Close case study">×</button>'+
+      '<div class="dv-head"></div>'+
+      '<div class="dv-stage">'+
+        '<button class="dv-nav dv-prev" type="button" aria-label="Previous slide">‹</button>'+
+        '<img class="dv-img" alt="">'+
+        '<button class="dv-nav dv-next" type="button" aria-label="Next slide">›</button>'+
+      '</div>'+
+      '<div class="dv-bar">'+
+        '<span class="dv-count"></span>'+
+        '<span class="dv-dots"></span>'+
+        '<a class="dv-pdf" download>Download PDF</a>'+
+        '<a class="dv-doc" target="_blank" rel="noopener">Full document ↗</a>'+
+      '</div>';
+    document.body.appendChild(dv);
+
+    const img=dv.querySelector('.dv-img'), head=dv.querySelector('.dv-head'),
+          count=dv.querySelector('.dv-count'), dots=dv.querySelector('.dv-dots'),
+          prev=dv.querySelector('.dv-prev'), next=dv.querySelector('.dv-next'),
+          pdf=dv.querySelector('.dv-pdf'), doc=dv.querySelector('.dv-doc');
+
+    let slug='', total=0, i=1, last=null;
+    const pad=n=>String(n).padStart(2,'0');
+    const src=n=>'assets/cases/'+slug+'-'+n+'.webp';
+
+    function show(n){
+      i=Math.min(Math.max(n,1),total);
+      img.src=src(i);
+      img.alt=head.textContent+' — slide '+i+' of '+total;
+      count.textContent=pad(i)+' / '+pad(total);
+      prev.disabled=(i===1); next.disabled=(i===total);
+      [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i-1));
+      if(i<total){const pre=new Image();pre.src=src(i+1);}
+    }
+
+    function open(el){
+      last=el;
+      slug=el.dataset.case;
+      total=parseInt(el.dataset.slides,10)||5;
+      head.textContent=el.dataset.title||'';
+      pdf.href=el.dataset.pdf||'#'; pdf.hidden=!el.dataset.pdf;
+      doc.href=el.dataset.doc||'#'; doc.hidden=!el.dataset.doc;
+      dots.innerHTML='';
+      for(let n=1;n<=total;n++){
+        const b=document.createElement('button');
+        b.type='button';b.setAttribute('aria-label','Slide '+n);
+        b.addEventListener('click',()=>show(n));
+        dots.appendChild(b);
+      }
+      show(1);
+      dv.classList.add('on');dv.setAttribute('aria-hidden','false');
+      document.documentElement.style.overflow='hidden';
+      dv.querySelector('.dv-x').focus();
+    }
+
+    function close(){
+      dv.classList.remove('on');dv.setAttribute('aria-hidden','true');
+      document.documentElement.style.overflow='';
+      setTimeout(()=>{img.src='';},200);
+      if(last&&last.focus)last.focus();
+    }
+
+    triggers.forEach(el=>{
+      el.addEventListener('click',e=>{
+        if(e.target.closest('a[href]'))return;   /* let real links through */
+        e.preventDefault();open(el);
+      });
+      if(el.tagName!=='BUTTON'){
+        el.addEventListener('keydown',e=>{
+          if(e.key==='Enter'||e.key===' '){e.preventDefault();open(el);}
+        });
+      }
+    });
+
+    prev.addEventListener('click',()=>show(i-1));
+    next.addEventListener('click',()=>show(i+1));
+    dv.addEventListener('click',e=>{
+      if(e.target===dv||e.target===dv.querySelector('.dv-stage')||e.target.closest('.dv-x'))close();
+    });
+    document.addEventListener('keydown',e=>{
+      if(!dv.classList.contains('on'))return;
+      if(e.key==='Escape')close();
+      else if(e.key==='ArrowRight')show(i+1);
+      else if(e.key==='ArrowLeft')show(i-1);
+    });
+
+    /* swipe */
+    let x0=null;
+    dv.addEventListener('touchstart',e=>{x0=e.changedTouches[0].clientX;},{passive:true});
+    dv.addEventListener('touchend',e=>{
+      if(x0===null)return;
+      const dx=e.changedTouches[0].clientX-x0; x0=null;
+      if(Math.abs(dx)>45) show(dx<0?i+1:i-1);
+    },{passive:true});
   })();
 </script>
 </body>
