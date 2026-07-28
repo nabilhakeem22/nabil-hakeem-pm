@@ -109,6 +109,37 @@
   .shot.empty img{display:none}
   .shot .ph{z-index:0}
 
+  /* ---- work: device-framed screenshots + lightbox ---- */
+  .stage{width:100%;display:flex;flex-direction:column;gap:12px}
+  .stage.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .thumbs{display:flex;gap:10px}
+  .thumbs>.frame{flex:1;min-width:0}
+  .frame{position:relative;border-radius:9px;overflow:hidden;background:#0C1814;border:1px solid var(--panel-line);box-shadow:0 14px 34px -22px rgba(0,0,0,.75);cursor:zoom-in;transition:border-color .2s,transform .2s;display:block;text-align:left}
+  .frame:hover,.frame:focus-visible{border-color:var(--signal);transform:translateY(-2px);outline:none}
+  .frame .scr{position:relative;overflow:hidden;background:#0C1814}
+  .frame .scr img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .frame .scr::after{content:"";position:absolute;top:9px;right:10px;width:28px;height:28px;border-radius:6px;background:rgba(9,15,13,.72) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E") center/15px no-repeat;opacity:0;transition:opacity .2s;z-index:4}
+  .frame:hover .scr::after,.frame:focus-visible .scr::after{opacity:1}
+  .frame.web .bar{display:flex;align-items:center;gap:6px;padding:8px 11px;background:#16261F;border-bottom:1px solid var(--panel-line)}
+  .frame.web .bar.sm{padding:6px 9px}
+  .frame.web .bar i{width:9px;height:9px;border-radius:50%;flex:none;background:#33413a}
+  .frame.web .bar i:nth-child(1){background:#ff5f57}.frame.web .bar i:nth-child(2){background:#febc2e}.frame.web .bar i:nth-child(3){background:#28c840}
+  .frame.web .bar .url{margin-left:9px;flex:1;min-width:0;height:18px;border-radius:9px;background:#0C1814;border:1px solid var(--panel-line);display:flex;align-items:center;padding:0 10px;font-family:"Space Mono",monospace;font-size:9.5px;color:#78857d;white-space:nowrap;overflow:hidden}
+  .frame.web.big .scr{aspect-ratio:16/10}
+  .thumbs .frame.web .scr{aspect-ratio:16/11}
+  .frame.phone{border:2px solid #33413a;border-radius:22px}
+  .frame.phone .scr{aspect-ratio:3/4}
+  .frame.neutral.big .scr{aspect-ratio:16/7}
+  .thumbs .frame.neutral .scr{aspect-ratio:4/3}
+  @media(max-width:560px){.thumbs{gap:8px}.frame.web.big .scr{aspect-ratio:16/11}}
+  /* lightbox */
+  .lb{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(9,15,13,.93);padding:28px;backdrop-filter:blur(5px)}
+  .lb.on{display:flex}
+  .lb img{max-width:min(1180px,94vw);max-height:86vh;object-fit:contain;border-radius:8px;border:1px solid var(--panel-line);box-shadow:0 40px 90px -30px #000;background:#0C1814}
+  .lb-x{position:absolute;top:18px;right:22px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(0,0,0,.35);color:#fff;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .lb-x:hover{background:var(--signal-deep);border-color:var(--signal-deep)}
+  .lb-cap{position:absolute;left:0;right:0;bottom:20px;text-align:center;color:#C9D3CD;font-family:"Space Mono",monospace;font-size:12px;padding:0 20px}
+
   .p-id{font-family:"Space Mono",monospace;font-size:12px;color:var(--signal-deep);letter-spacing:0.06em}
   .p-co{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.5rem;margin:8px 0 4px;line-height:1.05}
   .p-role{font-family:"Space Mono",monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted)}
@@ -288,10 +319,12 @@
 
     <!-- 360 -->
     <article class="project reveal">
-      <div class="visual"><div class="shots">
-        <div class="shot main"><img src="assets/360-1.png" alt="Signals360 market-intelligence platform — home page" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">360 · 01</div><div class="pico"></div><div class="pfile">assets/360-1.png</div></div></div>
-        <div class="shot sub"><img src="assets/360-2.png" alt="Comply360 governance dashboard — companies view" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">360 · 02</div><div class="pico"></div><div class="pfile">assets/360-2.png</div></div></div>
-        <div class="shot sub"><img src="assets/360-3.png" alt="Comply360 case workspace" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">360 · 03</div><div class="pico"></div><div class="pfile">assets/360-3.png</div></div></div>
+      <div class="visual"><div class="stage">
+        <figure class="frame web big" data-full="assets/360-2.png" tabindex="0" role="button" aria-label="Enlarge Comply360 companies dashboard"><div class="bar"><i></i><i></i><i></i><span class="url">app.comply360.io</span></div><div class="scr"><img src="assets/360-2.png" alt="Comply360 governance dashboard — companies view" loading="lazy"></div></figure>
+        <div class="thumbs">
+          <figure class="frame web" data-full="assets/360-1.png" tabindex="0" role="button" aria-label="Enlarge Signals360 landing page"><div class="bar sm"><i></i><i></i><i></i></div><div class="scr"><img src="assets/360-1.png" alt="Signals360 market-intelligence platform — home page" loading="lazy"></div></figure>
+          <figure class="frame web" data-full="assets/360-3.png" tabindex="0" role="button" aria-label="Enlarge Comply360 case workspace"><div class="bar sm"><i></i><i></i><i></i></div><div class="scr"><img src="assets/360-3.png" alt="Comply360 case workspace" loading="lazy"></div></figure>
+        </div>
       </div></div>
       <div class="content">
         <div class="p-id">REC-01</div>
@@ -307,11 +340,13 @@
 
     <!-- Belvro Wealth -->
     <article class="project reveal">
-      <div class="visual"><div class="shots belvro-split">
-        <div class="shot web"><span class="plat">Web</span><img src="assets/belvro-1.png" alt="Belvro Wealth web platform — advisor portfolio dashboard" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">BELVRO · WEB</div><div class="pico"></div><div class="pfile">assets/belvro-1.png</div></div></div>
-        <div class="shot app"><span class="plat">App</span><img src="assets/belvro-app-1.png" alt="Belvro Wealth app — home &amp; investment journey" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">APP · 01</div><div class="pico"></div><div class="pfile">assets/belvro-app-1.png</div></div></div>
-        <div class="shot app"><img src="assets/belvro-app-2.png" alt="Belvro Wealth app — explore portfolios" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">APP · 02</div><div class="pico"></div><div class="pfile">assets/belvro-app-2.png</div></div></div>
-        <div class="shot app"><img src="assets/belvro-app-3.png" alt="Belvro Wealth app — wallet &amp; funding" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">APP · 03</div><div class="pico"></div><div class="pfile">assets/belvro-app-3.png</div></div></div>
+      <div class="visual"><div class="stage">
+        <figure class="frame web big" data-full="assets/belvro-1.png" tabindex="0" role="button" aria-label="Enlarge Belvro Wealth web dashboard"><div class="bar"><i></i><i></i><i></i><span class="url">app.belvro.com</span></div><div class="scr"><img src="assets/belvro-1.png" alt="Belvro Wealth web platform — advisor portfolio dashboard" loading="lazy"></div></figure>
+        <div class="thumbs">
+          <figure class="frame phone" data-full="assets/belvro-app-1.png" tabindex="0" role="button" aria-label="Enlarge Belvro app home"><div class="scr"><img src="assets/belvro-app-1.png" alt="Belvro Wealth app — home &amp; investment journey" loading="lazy"></div></figure>
+          <figure class="frame phone" data-full="assets/belvro-app-2.png" tabindex="0" role="button" aria-label="Enlarge Belvro app explore portfolios"><div class="scr"><img src="assets/belvro-app-2.png" alt="Belvro Wealth app — explore portfolios" loading="lazy"></div></figure>
+          <figure class="frame phone" data-full="assets/belvro-app-3.png" tabindex="0" role="button" aria-label="Enlarge Belvro app wallet"><div class="scr"><img src="assets/belvro-app-3.png" alt="Belvro Wealth app — wallet &amp; funding" loading="lazy"></div></figure>
+        </div>
       </div></div>
       <div class="content">
         <div class="p-id">REC-02</div>
@@ -327,10 +362,12 @@
 
     <!-- Convertedin -->
     <article class="project reveal">
-      <div class="visual"><div class="shots">
-        <div class="shot main"><img src="assets/convertedin-1.png" alt="Convertedin — create campaign, settings step" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">CONVERTEDIN · 01</div><div class="pico"></div><div class="pfile">assets/convertedin-1.png</div></div></div>
-        <div class="shot sub"><img src="assets/convertedin-2.png" alt="Convertedin — ad creatives step" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">CONVERTEDIN · 02</div><div class="pico"></div><div class="pfile">assets/convertedin-2.png</div></div></div>
-        <div class="shot sub"><img src="assets/convertedin-3.png" alt="Convertedin — Adroll campaign builder" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">CONVERTEDIN · 03</div><div class="pico"></div><div class="pfile">assets/convertedin-3.png</div></div></div>
+      <div class="visual"><div class="stage">
+        <figure class="frame web big" data-full="assets/convertedin-1.png" tabindex="0" role="button" aria-label="Enlarge Convertedin campaign settings"><div class="bar"><i></i><i></i><i></i><span class="url">app.convertedin.com</span></div><div class="scr"><img src="assets/convertedin-1.png" alt="Convertedin — create campaign, settings step" loading="lazy"></div></figure>
+        <div class="thumbs">
+          <figure class="frame web" data-full="assets/convertedin-2.png" tabindex="0" role="button" aria-label="Enlarge Convertedin ad creatives"><div class="bar sm"><i></i><i></i><i></i></div><div class="scr"><img src="assets/convertedin-2.png" alt="Convertedin — ad creatives step" loading="lazy"></div></figure>
+          <figure class="frame web" data-full="assets/convertedin-3.png" tabindex="0" role="button" aria-label="Enlarge Convertedin Adroll campaign builder"><div class="bar sm"><i></i><i></i><i></i></div><div class="scr"><img src="assets/convertedin-3.png" alt="Convertedin — Adroll campaign builder" loading="lazy"></div></figure>
+        </div>
       </div></div>
       <div class="content">
         <div class="p-id">REC-03</div>
@@ -346,10 +383,12 @@
 
     <!-- Imox -->
     <article class="project reveal">
-      <div class="visual"><div class="shots">
-        <div class="shot main"><img src="assets/imox-1.png" alt="iMOX — video-shopping product review system" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">IMOX · 01</div><div class="pico"></div><div class="pfile">assets/imox-1.png</div></div></div>
-        <div class="shot sub"><img src="assets/imox-2.png" alt="iMOX — streamlined onboarding survey" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">IMOX · 02</div><div class="pico"></div><div class="pfile">assets/imox-2.png</div></div></div>
-        <div class="shot sub"><img src="assets/imox-3.png" alt="iMOX — video review creation flow" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">IMOX · 03</div><div class="pico"></div><div class="pfile">assets/imox-3.png</div></div></div>
+      <div class="visual"><div class="stage">
+        <figure class="frame neutral big" data-full="assets/imox-1.png" tabindex="0" role="button" aria-label="Enlarge iMOX video-shopping review system"><div class="scr"><img src="assets/imox-1.png" alt="iMOX — video-shopping product review system" loading="lazy"></div></figure>
+        <div class="thumbs">
+          <figure class="frame neutral" data-full="assets/imox-3.png" tabindex="0" role="button" aria-label="Enlarge iMOX video review creation flow"><div class="scr"><img src="assets/imox-3.png" alt="iMOX — video review creation flow" loading="lazy"></div></figure>
+          <figure class="frame neutral" data-full="assets/imox-2.png" tabindex="0" role="button" aria-label="Enlarge iMOX onboarding survey"><div class="scr"><img src="assets/imox-2.png" alt="iMOX — streamlined onboarding survey" loading="lazy"></div></figure>
+        </div>
       </div></div>
       <div class="content">
         <div class="p-id">REC-04</div>
@@ -365,10 +404,10 @@
 
     <!-- Rubikans -->
     <article class="project reveal">
-      <div class="visual"><div class="shots portrait">
-        <div class="shot"><img src="assets/rubikans-1.jpg" alt="4eShopping pharma marketplace — home screen" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">RUBIKANS · 01</div><div class="pico"></div><div class="pfile">assets/rubikans-1.jpg</div></div></div>
-        <div class="shot"><img src="assets/rubikans-2.jpg" alt="4eShopping — cart &amp; checkout" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">RUBIKANS · 02</div><div class="pico"></div><div class="pfile">assets/rubikans-2.jpg</div></div></div>
-        <div class="shot"><img src="assets/rubikans-3.jpg" alt="4eShopping — coins loyalty &amp; rewards" loading="lazy" onerror="this.closest('.shot').classList.add('empty')"><div class="ph"><div class="pin">RUBIKANS · 03</div><div class="pico"></div><div class="pfile">assets/rubikans-3.jpg</div></div></div>
+      <div class="visual"><div class="stage row3">
+        <figure class="frame phone" data-full="assets/rubikans-1.jpg" tabindex="0" role="button" aria-label="Enlarge 4eShopping home screen"><div class="scr"><img src="assets/rubikans-1.jpg" alt="4eShopping pharma marketplace — home screen" loading="lazy"></div></figure>
+        <figure class="frame phone" data-full="assets/rubikans-2.jpg" tabindex="0" role="button" aria-label="Enlarge 4eShopping cart and checkout"><div class="scr"><img src="assets/rubikans-2.jpg" alt="4eShopping — cart &amp; checkout" loading="lazy"></div></figure>
+        <figure class="frame phone" data-full="assets/rubikans-3.jpg" tabindex="0" role="button" aria-label="Enlarge 4eShopping coins loyalty"><div class="scr"><img src="assets/rubikans-3.jpg" alt="4eShopping — coins loyalty &amp; rewards" loading="lazy"></div></figure>
       </div></div>
       <div class="content">
         <div class="p-id">REC-05</div>
@@ -484,6 +523,25 @@
 <script>
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.12,rootMargin:"0px 0px -40px 0px"});
   document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,4)*55)+'ms';io.observe(el);});
+
+  /* click-to-zoom lightbox for work screenshots */
+  (function(){
+    const lb=document.createElement('div');
+    lb.className='lb';lb.setAttribute('aria-hidden','true');lb.setAttribute('role','dialog');lb.setAttribute('aria-modal','true');
+    lb.innerHTML='<button class="lb-x" type="button" aria-label="Close">×</button><img alt=""><div class="lb-cap"></div>';
+    document.body.appendChild(lb);
+    const lbImg=lb.querySelector('img'), lbCap=lb.querySelector('.lb-cap');
+    let last=null;
+    function open(src,cap,trigger){last=trigger||null;lbImg.src=src;lbImg.alt=cap||'';lbCap.textContent=cap||'';lb.classList.add('on');lb.setAttribute('aria-hidden','false');document.documentElement.style.overflow='hidden';lb.querySelector('.lb-x').focus();}
+    function close(){lb.classList.remove('on');lb.setAttribute('aria-hidden','true');document.documentElement.style.overflow='';setTimeout(()=>{lbImg.src='';},200);if(last&&last.focus)last.focus();}
+    document.querySelectorAll('.frame[data-full]').forEach(f=>{
+      const go=()=>{const img=f.querySelector('img');if(!img)return;open(img.currentSrc||img.src,img.alt,f);};
+      f.addEventListener('click',go);
+      f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+    });
+    lb.addEventListener('click',e=>{if(e.target===lb||e.target.closest('.lb-x'))close();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lb.classList.contains('on'))close();});
+  })();
 </script>
 </body>
 </html>
